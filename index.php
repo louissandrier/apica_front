@@ -30,13 +30,13 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" method="post">
+				<form class="login100-form validate-form" method="POST" action="https://127.0.0.1:8000/connexion">
 					<span class="login100-form-title">
 						Connectez-vous
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Le nom d'utilisateur est requis">
-						<input class="input100" type="text" name="email" placeholder="Nom d'utilisateur">
+						<input class="input100" type="text" name="username" placeholder="Nom d'utilisateur">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -44,7 +44,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Le mot de passe est requis">
-						<input class="input100" type="password" name="pass" placeholder="Mot de passe">
+						<input class="input100" type="password" name="password" placeholder="Mot de passe">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -52,7 +52,7 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" type="submit">
 							Se connecter
 						</button>
 					</div>
