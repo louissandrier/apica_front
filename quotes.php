@@ -24,30 +24,17 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<blockquote class="blockquote">
-				  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-				  <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-				</blockquote>
-			</div>
-			<div class="wrap-login100">
-				<blockquote class="blockquote">
-				  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-				  <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-				</blockquote>				
-			</div>
-			<div class="wrap-login100">
-				<blockquote class="blockquote">
-				  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-				  <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-				</blockquote>				
-			</div>
-		</div>
+		<div class="container-login100" id="quotesContainer"></div>
 	</div>
 
 	<div class="addCitationBtn" data-toggle="modal" data-target="#addCitationModal">
 		Ajouter une citation
+	</div>
+	<div class="addPersonnageBtn" data-toggle="modal" data-target="#addPersonnageModal">
+		Ajouter un personnage
+	</div>
+	<div class="addFilmBtn" data-toggle="modal" data-target="#addFilmModal">
+		Ajouter un film
 	</div>
 	
 	
@@ -63,25 +50,63 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        <form>
-				<input class="input100 citation" type="text" name="citationTitle" placeholder="Entrez votre citation">
-				<select class="input100 citation" type="text" name="citationFilm">
+	        <form id="submitCitation">
+				<input class="input100 citation" type="text" name="citation" placeholder="Entrez votre citation">
+				<select class="input100 citation" type="text" name="film" id="selectFilm">
 					<option selected disabled>Entrez votre film</option>
-					<option value="0">OSS 117</option>
-					<option value="1">Asterix et Obélix - Mission Cléopatre</option>
-					<option value="2">Die Hard 4</option>
 				</select>
-				<select class="input100 citation" type="text" name="citationFilm">
+				<select class="input100 citation" type="text" name="personnage" id="selectPersonnage">
 					<option selected disabled>Entrez votre personnage</option>
-					<option value="0">Hubert Bonnisseur de la Bath</option>
-					<option value="1">Numérobis</option>
-					<option value="2">Hank Shreder</option>
 				</select>
+				<div class="row">
+					<button type="button" class="login100-cancel-btn" data-dismiss="modal">Annuler</button>
+	        		<button type="submit" class="login100-addCitation-btn">Ajouter</button>
+				</div>
 	        </form>
 	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="login100-cancel-btn" data-dismiss="modal">Annuler</button>
-	        <button type="button" class="login100-addCitation-btn">Ajouter</button>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade bd-example-modal-lg" id="addPersonnageModal" tabindex="-1" role="dialog" aria-labelledby="addPersonnageModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="addPersonnageModalLabel">Ajouter un personnage</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form id="submitPersonnage">
+				<input class="input100 citation" type="text" name="nom" placeholder="Entrez votre personnage">
+				<div class="row">
+					<button type="button" class="login100-cancel-btn" data-dismiss="modal">Annuler</button>
+	        		<button type="submit" class="login100-addCitation-btn">Ajouter</button>
+				</div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade bd-example-modal-lg" id="addFilmModal" tabindex="-1" role="dialog" aria-labelledby="addFilmModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="addFilmModalLabel">Ajouter un film</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form id="submitFilm">
+				<input class="input100 citation" type="text" name="titre" placeholder="Entrez votre film">
+				<div class="row">
+					<button type="button" class="login100-cancel-btn" data-dismiss="modal">Annuler</button>
+	        		<button type="submit" class="login100-addCitation-btn">Ajouter</button>
+				</div>
+	        </form>
 	      </div>
 	    </div>
 	  </div>
@@ -101,6 +126,109 @@
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
+
+		var urlCitation = 'https://localhost:8000/all_citation';
+		var urlFilm = 'https://localhost:8000/all_film';
+		var urlPersonnage = 'https://localhost:8000/all_personnage';
+
+		$.ajax({
+			type: "GET",
+			url: urlCitation,
+			success: function(data) {
+				console.log(data)
+				$.each(data.reverse(), function(index, citation){
+					$('#quotesContainer').append(
+						'<div class="wrap-login100">'+
+							'<blockquote class="blockquote">'+
+							  '<p class="mb-0">'+ citation.citation +'</p>'+
+							  '<footer class="blockquote-footer">'+ citation.personnage.nom +' dans <cite title="Source Title">'+ citation.film.titre +'</cite></footer>'+
+							'</blockquote>'+
+						'</div>'
+					)
+				})
+				
+			}
+		})
+
+		$.ajax({
+			type: "GET",
+			url: urlFilm,
+			success: function(data) {
+				$.each(data, function(index, film){
+					$('#selectFilm').append(
+						'<option value="'+ film.id +'">'+ film.titre +'</option>'
+					)
+				})
+				
+			}
+		})
+
+		$.ajax({
+			type: "GET",
+			url: urlPersonnage,
+			success: function(data) {
+				$.each(data, function(index, personnage){
+					$('#selectPersonnage').append(
+						'<option value="'+ personnage.id +'">'+ personnage.nom +'</option>'
+					)
+				})
+				
+			}
+		})
+
+		$('#submitCitation').submit(function (e) {
+	        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+	        var form = $(this);
+	        var url = 'https://127.0.0.1:8000/add_citation';
+
+	        $.ajax({
+	           type: "POST",
+	           url: url,
+	           data: form.serialize(), // serializes the form's elements.
+	           success: function(data)
+	           {
+	               $('#addCitationModal').modal('hide');
+	               location.reload();
+	           }
+	         });
+	    })
+
+	    $('#submitPersonnage').submit(function (e) {
+	        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+	        var form = $(this);
+	        var url = 'https://127.0.0.1:8000/personnage';
+
+	        $.ajax({
+	           type: "POST",
+	           url: url,
+	           data: form.serialize(), // serializes the form's elements.
+	           success: function(data)
+	           {
+	               $('#addPersonnageModal').modal('hide');
+	               location.reload();
+	           }
+	         });
+	    })
+
+	    $('#submitFilm').submit(function (e) {
+	        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+	        var form = $(this);
+	        var url = 'https://127.0.0.1:8000/film';
+
+	        $.ajax({
+	           type: "POST",
+	           url: url,
+	           data: form.serialize(), // serializes the form's elements.
+	           success: function(data)
+	           {
+	               $('#addFilmModal').modal('hide');
+	               location.reload();
+	           }
+	         });
+	    })
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>

@@ -541,3 +541,33 @@ select.input100 {
   background-color: #e7e7e7;
   transition: 200ms ease-in-out;
 }
+
+.addPersonnageBtn {
+    padding: 15px;
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: white;
+    border-radius: 10px;
+    cursor:pointer;
+}
+
+.addPersonnageBtn:hover {
+  background-color: #e7e7e7;
+  transition: 200ms ease-in-out;
+}
+
+.addFilmBtn {
+    padding: 15px;
+    position: absolute;
+    bottom: 80px;
+    left: 12px;
+    background: white;
+    border-radius: 10px;
+    cursor:pointer;
+}
+
+.addFilmBtn:hover {
+  background-color: #e7e7e7;
+  transition: 200ms ease-in-out;
+}
