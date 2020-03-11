@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="fr">
 <head>
 	<title>Login V1</title>
@@ -30,7 +29,7 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" method="POST" action="https://127.0.0.1:8000/connexion">
+				<form class="login100-form validate-form" id="connexionForm">
 					<span class="login100-form-title">
 						Connectez-vous
 					</span>

@@ -243,6 +243,13 @@ iframe {
   padding: 0 30px 0 68px;
 }
 
+select.input100 {
+  border: none;
+}
+
+.input100.citation {
+  margin-bottom: 1rem;
+}
 
 /*------------------------------------------------------------------
 [ Focus ]*/
@@ -352,6 +359,65 @@ iframe {
   background: #333333;
 }
 
+.login100-addCitation-btn {
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  text-transform: uppercase;
+
+  width: 50%;
+  height: 50px;
+  border-radius: 25px;
+  background: #57b846;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-addCitation-btn:hover {
+  background: #333333;
+}
+
+.login100-cancel-btn {
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  text-transform: uppercase;
+
+  width: 50%;
+  height: 50px;
+  border-radius: 25px;
+  background: red;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-cancel-btn:hover {
+  background: #333333;
+}
 
 
 /*------------------------------------------------------------------
@@ -459,4 +525,19 @@ iframe {
     visibility: visible;
     opacity: 1;
   }
+}
+
+.addCitationBtn {
+    padding: 15px;
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: white;
+    border-radius: 10px;
+    cursor:pointer;
+}
+
+.addCitationBtn:hover {
+  background-color: #e7e7e7;
+  transition: 200ms ease-in-out;
 }

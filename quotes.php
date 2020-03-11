@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<title>Login V1</title>
+	<title>Quotes</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -26,42 +26,66 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
-					<img src="images/img-01.png" alt="IMG">
-				</div>
-
-				<form class="login100-form validate-form">
-					<span class="login100-form-title">
-						Connectez-vous
-					</span>
-
-					<div class="wrap-input100 validate-input" data-validate = "Le nom d'utilisateur est requis">
-						<input class="input100" type="text" name="email" placeholder="Nom d'utilisateur">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
-						</span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "Le mot de passe est requis">
-						<input class="input100" type="password" name="pass" placeholder="Mot de passe">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
-					
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Se connecter
-						</button>
-					</div>
-				</form>
+				<blockquote class="blockquote">
+				  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+				  <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+				</blockquote>
+			</div>
+			<div class="wrap-login100">
+				<blockquote class="blockquote">
+				  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+				  <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+				</blockquote>				
+			</div>
+			<div class="wrap-login100">
+				<blockquote class="blockquote">
+				  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+				  <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+				</blockquote>				
 			</div>
 		</div>
 	</div>
+
+	<div class="addCitationBtn" data-toggle="modal" data-target="#addCitationModal">
+		Ajouter une citation
+	</div>
 	
 	
+
+
+	<div class="modal fade bd-example-modal-lg" id="addCitationModal" tabindex="-1" role="dialog" aria-labelledby="addCitationModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="addCitationModalLabel">Ajouter une citation</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form>
+				<input class="input100 citation" type="text" name="citationTitle" placeholder="Entrez votre citation">
+				<select class="input100 citation" type="text" name="citationFilm">
+					<option selected disabled>Entrez votre film</option>
+					<option value="0">OSS 117</option>
+					<option value="1">Asterix et Obélix - Mission Cléopatre</option>
+					<option value="2">Die Hard 4</option>
+				</select>
+				<select class="input100 citation" type="text" name="citationFilm">
+					<option selected disabled>Entrez votre personnage</option>
+					<option value="0">Hubert Bonnisseur de la Bath</option>
+					<option value="1">Numérobis</option>
+					<option value="2">Hank Shreder</option>
+				</select>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="login100-cancel-btn" data-dismiss="modal">Annuler</button>
+	        <button type="button" class="login100-addCitation-btn">Ajouter</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 	
 <!--===============================================================================================-->	
