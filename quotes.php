@@ -27,14 +27,20 @@
 		<div class="container-login100" id="quotesContainer"></div>
 	</div>
 
-	<div class="addCitationBtn" data-toggle="modal" data-target="#addCitationModal">
+	<div class="addCitationBtn shadow" data-toggle="modal" data-target="#addCitationModal">
 		Ajouter une citation
 	</div>
-	<div class="addPersonnageBtn" data-toggle="modal" data-target="#addPersonnageModal">
+	<div class="addPersonnageBtn shadow" data-toggle="modal" data-target="#addPersonnageModal">
 		Ajouter un personnage
 	</div>
-	<div class="addFilmBtn" data-toggle="modal" data-target="#addFilmModal">
+	<div class="addFilmBtn shadow" data-toggle="modal" data-target="#addFilmModal">
 		Ajouter un film
+	</div>
+	<div class="citationFilmBtn shadow" data-toggle="modal" data-target="#citationFilmModal">
+		Citations par film
+	</div>
+	<div class="citationPersonnageBtn shadow" data-toggle="modal" data-target="#citationPersonnageModal">
+		Citations par personnage
 	</div>
 	
 	
@@ -112,6 +118,46 @@
 	  </div>
 	</div>
 
+	<div class="modal fade bd-example-modal-lg" id="citationFilmModal" tabindex="-1" role="dialog" aria-labelledby="citationFilmModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="citationFilmModalLabel">Citations par film</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form id="searchFilm">
+				<select class="input100 citation" type="text" name="film" id="selectFilmCitation">
+					<option selected disabled>Entrez votre film</option>
+				</select>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade bd-example-modal-lg" id="citationPersonnageModal" tabindex="-1" role="dialog" aria-labelledby="citationPersonnageModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="citationPersonnageModalLabel">Citations par personnage</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form id="searchPersonnage">
+				<select class="input100 citation" type="text" name="personnage" id="selectPersonnageCitation">
+					<option selected disabled>Entrez votre personnage</option>
+				</select>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 	
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -135,7 +181,6 @@
 			type: "GET",
 			url: urlCitation,
 			success: function(data) {
-				console.log(data)
 				$.each(data.reverse(), function(index, citation){
 					$('#quotesContainer').append(
 						'<div class="wrap-login100">'+
@@ -157,6 +202,9 @@
 				$.each(data, function(index, film){
 					$('#selectFilm').append(
 						'<option value="'+ film.id +'">'+ film.titre +'</option>'
+					);
+					$('#selectFilmCitation').append(
+						'<option value="'+ film.id +'">'+ film.titre +'</option>'
 					)
 				})
 				
@@ -169,6 +217,9 @@
 			success: function(data) {
 				$.each(data, function(index, personnage){
 					$('#selectPersonnage').append(
+						'<option value="'+ personnage.id +'">'+ personnage.nom +'</option>'
+					);
+					$('#selectPersonnageCitation').append(
 						'<option value="'+ personnage.id +'">'+ personnage.nom +'</option>'
 					)
 				})
@@ -228,6 +279,62 @@
 	               location.reload();
 	           }
 	         });
+	    })
+
+	    $('#selectFilmCitation').change(function(e) {
+	    	e.preventDefault();
+
+	    	var form = $(this);
+	    	var url = 'https://127.0.0.1:8000/citation_by_film';
+
+	    	$.ajax({
+	    		type: 'POST',
+	    		url: url,
+	    		data: form.serialize(),
+	    		success: function(data)
+	    		{
+	    			$('#quotesContainer').empty();
+	    			$.each(data.reverse(), function(index, citation){
+						$('#quotesContainer').append(
+							'<div class="wrap-login100">'+
+								'<blockquote class="blockquote">'+
+								  '<p class="mb-0">'+ citation.citation +'</p>'+
+								  '<footer class="blockquote-footer">'+ citation.personnage.nom +' dans <cite title="Source Title">'+ citation.film.titre +'</cite></footer>'+
+								'</blockquote>'+
+							'</div>'
+						)
+						$('#citationFilmModal').modal('hide');
+					})
+	    		}
+	    	})
+	    })
+
+	    $('#selectPersonnageCitation').change(function(e) {
+	    	e.preventDefault();
+
+	    	var form = $(this);
+	    	var url = 'https://127.0.0.1:8000/citation_by_personnage';
+
+	    	$.ajax({
+	    		type: 'POST',
+	    		url: url,
+	    		data: form.serialize(),
+	    		success: function(data)
+	    		{
+	    			$('#quotesContainer').empty();
+	    			$.each(data.reverse(), function(index, citation){
+						$('#quotesContainer').append(
+							'<div class="wrap-login100">'+
+								'<blockquote class="blockquote">'+
+								  '<p class="mb-0">'+ citation.citation +'</p>'+
+								  '<footer class="blockquote-footer">'+ citation.personnage.nom +' dans <cite title="Source Title">'+ citation.film.titre +'</cite></footer>'+
+								'</blockquote>'+
+							'</div>'
+						)
+						$('#citationPersonnageModal').modal('hide');
+					})
+	    		}
+	    	})
 	    })
 	</script>
 <!--===============================================================================================-->

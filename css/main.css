@@ -571,3 +571,33 @@ select.input100 {
   background-color: #e7e7e7;
   transition: 200ms ease-in-out;
 }
+
+.citationFilmBtn {
+    padding: 15px;
+    position: absolute;
+    bottom: 150px;
+    left: 12px;
+    background: white;
+    border-radius: 10px;
+    cursor:pointer;
+}
+
+.citationFilmBtn:hover {
+  background-color: #e7e7e7;
+  transition: 200ms ease-in-out;
+}
+
+.citationPersonnageBtn {
+    padding: 15px;
+    position: absolute;
+    bottom: 220px;
+    left: 12px;
+    background: white;
+    border-radius: 10px;
+    cursor:pointer;
+}
+
+.citationPersonnageBtn:hover {
+  background-color: #e7e7e7;
+  transition: 200ms ease-in-out;
+}
